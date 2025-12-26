@@ -1,15 +1,16 @@
-import react, { use, useState } from "react";
+import React, { useState } from "react";
 
-interface AddtodoProp {
-  addtodo: (text: string) => void;
+interface AddTodoProps {
+  addTodo: (text: string) => void;
 }
-const Addtodo: react.FunctionComponent<AddtodoProp> = ({ addtodo }) => {
+
+const AddTodo: React.FC<AddTodoProps> = ({ addTodo }) => {
   const [text, setText] = useState("");
 
-  const handleSubmit = (e: react.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!text.trim()) return;
-    addtodo(text);
+    addTodo(text);
     setText("");
   };
 
@@ -18,10 +19,12 @@ const Addtodo: react.FunctionComponent<AddtodoProp> = ({ addtodo }) => {
       <input
         type="text"
         value={text}
-        placeholder="enter todo"
-        onChange={e => setText(e.target.value)}
-      ></input>
-      <button type="submit">add</button>
+        placeholder="Enter todo"
+        onChange={(e) => setText(e.target.value)}
+      />
+      <button type="submit">Add</button>
     </form>
   );
 };
+
+export default AddTodo;
